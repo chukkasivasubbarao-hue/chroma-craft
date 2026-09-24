@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pipette } from "lucide-react";
 import { useColor } from "@/lib/color-context";
 import {
@@ -41,6 +41,12 @@ function SwatchInput({
 }) {
   const [draft, setDraft] = useState(value);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setDraft(value);
+    setError(false);
+  }, [value]);
+
 
   const apply = (v: string) => {
     setDraft(v);
